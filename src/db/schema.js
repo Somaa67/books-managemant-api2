@@ -1,3 +1,4 @@
+const { year } = require("drizzle-orm/mysql-core");
 const { mysqlTable, int, varchar } = require("drizzle-orm/mysql-core");
 
 const users = mysqlTable("users", {
@@ -6,4 +7,12 @@ const users = mysqlTable("users", {
   email: varchar("email", { length: 255 }).notNull().unique(),
 });
 
-module.exports = { users };
+
+const books = mysqlTable("books", {
+  id: int("id").primaryKey().autoincrement(),
+  title: varchar("title", {length: 255}).notNull(),
+  aurhor: varchar("author",{length: 255}).notNull(),
+  year: int("year").notNull(),
+})
+
+module.exports = { users, books };
